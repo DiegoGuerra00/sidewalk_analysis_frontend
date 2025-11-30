@@ -594,21 +594,67 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
         ],
 
         // Images
+
         if (_returnMask && result.hasImages) ...[
           const SizedBox(height: 24),
-          _buildImageSection('Street View', result.gsv_png_b64),
-          const SizedBox(height: 16),
-          _buildImageSection(
-            'Sidewalk Overlay',
-            result.overlay_sidewalk_png_b64,
-          ),
-          const SizedBox(height: 16),
-          _buildImageSection(
-            'Obstacle Overlay',
-            result.overlay_obstacle_png_b64,
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Analysis Images',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildSingleViewImageGrid(result),
+                ],
+              ),
+            ),
           ),
         ],
       ],
+    );
+  }
+
+  Widget _buildSingleViewImageGrid(SingleResp result) {
+    final images = <Map<String, String?>>[];
+    
+    if (result.gsv_png_b64 != null) {
+      images.add({'image': result.gsv_png_b64, 'label': 'Street View'});
+    }
+    if (result.overlay_sidewalk_png_b64 != null) {
+      images.add({'image': result.overlay_sidewalk_png_b64, 'label': 'Sidewalk Overlay'});
+    }
+    if (result.overlay_obstacle_png_b64 != null) {
+      images.add({'image': result.overlay_obstacle_png_b64, 'label': 'Obstacle Overlay'});
+    }
+
+    if (images.isEmpty) {
+      return const Text('No images available');
+    }
+
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        childAspectRatio: 1.2,
+      ),
+      itemCount: images.length,
+      itemBuilder: (context, index) {
+        final item = images[index];
+        return _buildGridImage(
+          item['image']!,
+          item['label']!,
+        );
+      },
     );
   }
 
