@@ -59,7 +59,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   children: [
                     const Text(
                       'Analysis Type',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Row(
                       children: [
@@ -69,7 +72,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                             subtitle: const Text('Analyze one heading'),
                             value: false,
                             groupValue: _multiView,
-                            onChanged: (value) => setState(() => _multiView = false),
+                            onChanged: (value) =>
+                                setState(() => _multiView = false),
                           ),
                         ),
                         Expanded(
@@ -78,7 +82,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                             subtitle: const Text('Analyze multiple angles'),
                             value: true,
                             groupValue: _multiView,
-                            onChanged: (value) => setState(() => _multiView = true),
+                            onChanged: (value) =>
+                                setState(() => _multiView = true),
                           ),
                         ),
                       ],
@@ -98,7 +103,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   children: [
                     const Text(
                       'Location',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Row(
@@ -106,14 +114,16 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                         Radio<bool>(
                           value: false,
                           groupValue: _useCoordinates,
-                          onChanged: (value) => setState(() => _useCoordinates = false),
+                          onChanged: (value) =>
+                              setState(() => _useCoordinates = false),
                         ),
                         const Text('Address'),
                         const SizedBox(width: 20),
                         Radio<bool>(
                           value: true,
                           groupValue: _useCoordinates,
-                          onChanged: (value) => setState(() => _useCoordinates = true),
+                          onChanged: (value) =>
+                              setState(() => _useCoordinates = true),
                         ),
                         const Text('Coordinates'),
                       ],
@@ -138,7 +148,11 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                           Expanded(
                             child: TextField(
                               controller: _latController,
-                              keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                    decimal: true,
+                                    signed: true,
+                                  ),
                               decoration: const InputDecoration(
                                 labelText: 'Latitude',
                                 border: OutlineInputBorder(),
@@ -150,7 +164,11 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                           Expanded(
                             child: TextField(
                               controller: _lonController,
-                              keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: true),
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                    decimal: true,
+                                    signed: true,
+                                  ),
                               decoration: const InputDecoration(
                                 labelText: 'Longitude',
                                 border: OutlineInputBorder(),
@@ -161,7 +179,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                         ],
                       ),
                     ],
-                    
+
                     // Show heading, pitch, and FOV for single view regardless of input type
                     if (!_multiView) ...[
                       const SizedBox(height: 16),
@@ -181,7 +199,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                           Expanded(
                             child: TextField(
                               controller: _pitchController,
-                              keyboardType: const TextInputType.numberWithOptions(signed: true),
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                    signed: true,
+                                  ),
                               decoration: const InputDecoration(
                                 labelText: 'Pitch',
                                 hintText: '-90 to 90',
@@ -219,7 +240,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   children: [
                     const Text(
                       'Depth Backend',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Row(
@@ -230,7 +254,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                             subtitle: const Text('Higher accuracy'),
                             value: 'zoe',
                             groupValue: _depthBackend,
-                            onChanged: (value) => setState(() => _depthBackend = value!),
+                            onChanged: (value) =>
+                                setState(() => _depthBackend = value!),
                           ),
                         ),
                         Expanded(
@@ -239,28 +264,43 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                             subtitle: const Text('Faster processing'),
                             value: 'midas',
                             groupValue: _depthBackend,
-                            onChanged: (value) => setState(() => _depthBackend = value!),
+                            onChanged: (value) =>
+                                setState(() => _depthBackend = value!),
                           ),
                         ),
                       ],
                     ),
-                    
+
                     if (_depthBackend == 'zoe') ...[
                       const SizedBox(height: 8),
                       DropdownButtonFormField<String>(
-                        value: _zoeVariant,
+                        initialValue: _zoeVariant,
                         decoration: const InputDecoration(
                           labelText: 'ZoeDepth Variant',
                           border: OutlineInputBorder(),
-                          helperText: 'Leave as Default unless you need a specific variant',
+                          helperText:
+                              'Leave as Default unless you need a specific variant',
                         ),
                         items: const [
-                          DropdownMenuItem(value: null, child: Text('Default (ZoeD_N)')),
-                          DropdownMenuItem(value: 'ZoeD_N', child: Text('ZoeD_N - NYU-trained')),
-                          DropdownMenuItem(value: 'ZoeD_K', child: Text('ZoeD_K - KITTI-trained')),
-                          DropdownMenuItem(value: 'ZoeD_NK', child: Text('ZoeD_NK - Combined')),
+                          DropdownMenuItem(
+                            value: null,
+                            child: Text('Default (ZoeD_N)'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'ZoeD_N',
+                            child: Text('ZoeD_N - NYU-trained'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'ZoeD_K',
+                            child: Text('ZoeD_K - KITTI-trained'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'ZoeD_NK',
+                            child: Text('ZoeD_NK - Combined'),
+                          ),
                         ],
-                        onChanged: (value) => setState(() => _zoeVariant = value),
+                        onChanged: (value) =>
+                            setState(() => _zoeVariant = value),
                       ),
                     ],
                   ],
@@ -278,11 +318,16 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   children: [
                     const Text(
                       'Processing Options',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     CheckboxListTile(
                       title: const Text('Refine Geometry'),
-                      subtitle: const Text('Use geometric refinement for better accuracy'),
+                      subtitle: const Text(
+                        'Use geometric refinement for better accuracy',
+                      ),
                       value: _refine,
                       onChanged: (value) => setState(() => _refine = value!),
                     ),
@@ -290,18 +335,24 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                       title: const Text('Force Fallback'),
                       subtitle: const Text('Use fallback scale estimation'),
                       value: _forceFallback,
-                      onChanged: (value) => setState(() => _forceFallback = value!),
+                      onChanged: (value) =>
+                          setState(() => _forceFallback = value!),
                     ),
                     CheckboxListTile(
                       title: const Text('Return Mask Images'),
-                      subtitle: const Text('Include visualization overlays (slower)'),
+                      subtitle: const Text(
+                        'Include visualization overlays (slower)',
+                      ),
                       value: _returnMask,
-                      onChanged: (value) => setState(() => _returnMask = value!),
+                      onChanged: (value) =>
+                          setState(() => _returnMask = value!),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       controller: _fallbackScaleController,
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       decoration: const InputDecoration(
                         labelText: 'Fallback Scale (optional)',
                         hintText: 'metres-per-pixel',
@@ -312,7 +363,9 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                     const SizedBox(height: 16),
                     TextField(
                       controller: _minClearController,
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
                       decoration: const InputDecoration(
                         labelText: 'Minimum Clear Width (m)',
                         hintText: '1.20',
@@ -343,7 +396,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                       : 'Analyse ${_multiView ? 'Multi-View' : 'Single-View'}',
                 ),
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 16,
+                  ),
                   textStyle: const TextStyle(fontSize: 16),
                 ),
               ),
@@ -414,8 +470,16 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 const Divider(),
-                _buildMetricRow('Sidewalk Width', '${result.width_m.toStringAsFixed(2)} m', Icons.straighten),
-                _buildMetricRow('Clear Margin', '${result.margin_m.toStringAsFixed(2)} m', Icons.space_bar),
+                _buildMetricRow(
+                  'Sidewalk Width',
+                  '${result.width_m.toStringAsFixed(2)} m',
+                  Icons.straighten,
+                ),
+                _buildMetricRow(
+                  'Clear Margin',
+                  '${result.margin_m.toStringAsFixed(2)} m',
+                  Icons.space_bar,
+                ),
               ],
             ),
           ),
@@ -437,7 +501,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                       const SizedBox(width: 8),
                       const Text(
                         'Accessibility Rating',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     ],
                   ),
@@ -457,7 +524,9 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                     _buildMetricRow(
                       'Meets Minimum',
                       result.accessibility!['meets_minimum'] ? 'Yes' : 'No',
-                      result.accessibility!['meets_minimum'] ? Icons.check : Icons.close,
+                      result.accessibility!['meets_minimum']
+                          ? Icons.check
+                          : Icons.close,
                     ),
                 ],
               ),
@@ -480,31 +549,44 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                       const SizedBox(width: 8),
                       const Text(
                         'Detected Obstacles',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     ],
                   ),
                   const Divider(),
-                  ...result.clearances.map((clearance) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                  ...result.clearances.map(
+                    (clearance) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            clearance.label,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          if (clearance.total_m != null)
                             Text(
-                              clearance.label,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              '  Total clearance: ${clearance.total_m!.toStringAsFixed(2)}m',
                             ),
-                            if (clearance.total_m != null)
-                              Text('  Total clearance: ${clearance.total_m!.toStringAsFixed(2)}m'),
-                            if (clearance.L_m != null)
-                              Text('  Left: ${clearance.L_m!.toStringAsFixed(2)}m'),
-                            if (clearance.R_m != null)
-                              Text('  Right: ${clearance.R_m!.toStringAsFixed(2)}m'),
-                            if (clearance.obs_width != null)
-                              Text('  Obstacle width: ${clearance.obs_width!.toStringAsFixed(2)}m'),
-                          ],
-                        ),
-                      )),
+                          if (clearance.L_m != null)
+                            Text(
+                              '  Left: ${clearance.L_m!.toStringAsFixed(2)}m',
+                            ),
+                          if (clearance.R_m != null)
+                            Text(
+                              '  Right: ${clearance.R_m!.toStringAsFixed(2)}m',
+                            ),
+                          if (clearance.obs_width != null)
+                            Text(
+                              '  Obstacle width: ${clearance.obs_width!.toStringAsFixed(2)}m',
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -516,9 +598,15 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           const SizedBox(height: 24),
           _buildImageSection('Street View', result.gsv_png_b64),
           const SizedBox(height: 16),
-          _buildImageSection('Sidewalk Overlay', result.overlay_sidewalk_png_b64),
+          _buildImageSection(
+            'Sidewalk Overlay',
+            result.overlay_sidewalk_png_b64,
+          ),
           const SizedBox(height: 16),
-          _buildImageSection('Obstacle Overlay', result.overlay_obstacle_png_b64),
+          _buildImageSection(
+            'Obstacle Overlay',
+            result.overlay_obstacle_png_b64,
+          ),
         ],
       ],
     );
@@ -527,7 +615,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
   Widget _buildMultiResults(MultiResp result) {
     // Check if we're on a wider screen (desktop/tablet)
     final isWideScreen = MediaQuery.of(context).size.width > 800;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -547,18 +635,14 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                 // Metadata Card
                 if (result.multi_metadata != null &&
                     result.multi_metadata!['n_headings'] != null)
-                  Expanded(
-                    child: _buildMetadataCard(result.multi_metadata!),
-                  ),
+                  Expanded(child: _buildMetadataCard(result.multi_metadata!)),
                 if (result.multi_metadata != null &&
                     result.multi_metadata!['n_headings'] != null &&
                     result.all_views != null)
                   const SizedBox(width: 16),
                 // Overall Summary Card
                 if (result.all_views != null)
-                  Expanded(
-                    child: _buildOverallSummaryCard(result.all_views!),
-                  ),
+                  Expanded(child: _buildOverallSummaryCard(result.all_views!)),
               ],
             ),
           )
@@ -575,7 +659,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           ],
         ],
 
-        if (isWideScreen && (result.multi_metadata != null || result.all_views != null))
+        if (isWideScreen &&
+            (result.multi_metadata != null || result.all_views != null))
           const SizedBox(height: 16),
 
         // Per Side Results in a row on wide screens
@@ -589,11 +674,15 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                     Expanded(
                       child: _buildSideCard('LEFT', result.per_side!['LEFT']!),
                     ),
-                  if (result.per_side!['LEFT'] != null && result.per_side!['RIGHT'] != null)
+                  if (result.per_side!['LEFT'] != null &&
+                      result.per_side!['RIGHT'] != null)
                     const SizedBox(width: 16),
                   if (result.per_side!['RIGHT'] != null)
                     Expanded(
-                      child: _buildSideCard('RIGHT', result.per_side!['RIGHT']!),
+                      child: _buildSideCard(
+                        'RIGHT',
+                        result.per_side!['RIGHT']!,
+                      ),
                     ),
                 ],
               ),
@@ -612,7 +701,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
         // Sample Images
         if (_returnMask) ...[
           if (result.samples_left != null && result.samples_left!.isNotEmpty ||
-              result.samples_right != null && result.samples_right!.isNotEmpty) ...[
+              result.samples_right != null &&
+                  result.samples_right!.isNotEmpty) ...[
             const SizedBox(height: 16),
             Card(
               child: Padding(
@@ -622,7 +712,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   children: [
                     const Text(
                       'Sample Images',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     _buildImageGrid(result.samples_left, result.samples_right),
@@ -739,12 +832,15 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                 const SizedBox(width: 8),
                 Text(
                   '$side Side',
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ],
             ),
             const Divider(),
-            
+
             // Width metrics
             if (summary.median_width != null) ...[
               const Text(
@@ -763,7 +859,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                 Icons.space_bar,
               ),
             ],
-            
+
             // Width range
             if (summary.width_range_m != null) ...[
               const SizedBox(height: 8),
@@ -773,7 +869,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                 summary.median_width?['width_m'] as num?,
               ),
             ],
-            
+
             // Corridor info
             if (summary.corridor != null) ...[
               const Divider(),
@@ -801,7 +897,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   Icons.check_circle,
                 ),
             ],
-            
+
             // Obstacles
             if (summary.obstacles != null) ...[
               const Divider(),
@@ -816,7 +912,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   '${summary.obstacles!.typical_obstacles_per_view}',
                   Icons.warning,
                 ),
-              
+
               // Obstacle types breakdown
               if (summary.obstacles!.types != null &&
                   summary.obstacles!.types!.isNotEmpty) ...[
@@ -843,30 +939,49 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
     );
   }
 
-  Widget _buildImageGrid(List<dynamic>? samplesLeft, List<dynamic>? samplesRight) {
+  Widget _buildImageGrid(
+    List<dynamic>? samplesLeft,
+    List<dynamic>? samplesRight,
+  ) {
     // Collect up to 3 images from each side
-    final leftImages = samplesLeft?.take(3).map((sample) => 
-      sample['overlay_sidewalk_png_b64'] as String?).whereType<String>().toList() ?? [];
-    final rightImages = samplesRight?.take(3).map((sample) => 
-      sample['overlay_sidewalk_png_b64'] as String?).whereType<String>().toList() ?? [];
-    
+    final leftImages =
+        samplesLeft
+            ?.take(3)
+            .map((sample) => sample['overlay_sidewalk_png_b64'] as String?)
+            .whereType<String>()
+            .toList() ??
+        [];
+    final rightImages =
+        samplesRight
+            ?.take(3)
+            .map((sample) => sample['overlay_sidewalk_png_b64'] as String?)
+            .whereType<String>()
+            .toList() ??
+        [];
+
     // Interleave images: left1, right1, left2, right2, left3, right3
     final allImages = <Map<String, dynamic>>[];
-    final maxLength = leftImages.length > rightImages.length ? leftImages.length : rightImages.length;
-    
+    final maxLength = leftImages.length > rightImages.length
+        ? leftImages.length
+        : rightImages.length;
+
     for (int i = 0; i < maxLength; i++) {
       if (i < leftImages.length) {
         allImages.add({'image': leftImages[i], 'side': 'Left', 'index': i + 1});
       }
       if (i < rightImages.length) {
-        allImages.add({'image': rightImages[i], 'side': 'Right', 'index': i + 1});
+        allImages.add({
+          'image': rightImages[i],
+          'side': 'Right',
+          'index': i + 1,
+        });
       }
     }
-    
+
     if (allImages.isEmpty) {
       return const Text('No images available');
     }
-    
+
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -953,60 +1068,42 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
     final min = minWidth.toDouble();
     final max = maxWidth.toDouble();
     final median = medianWidth?.toDouble();
-    
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          'Width Range:',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-        ),
-        const SizedBox(height: 8),
-        Row(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Min label
-            SizedBox(
-              width: 50,
-              child: Text(
-                '${min.toStringAsFixed(2)}m',
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              ),
+            const Text(
+              'Width Range:',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
-            // Visual range bar
-            Expanded(
-              child: CustomPaint(
-                size: const Size(double.infinity, 40),
-                painter: _RangeBarPainter(
-                  minValue: min,
-                  maxValue: max,
-                  medianValue: median,
-                ),
-              ),
+            const SizedBox(height: 4),
+            Text(
+              'Min: ${min.toStringAsFixed(2)}m',
+              style: const TextStyle(fontSize: 12),
             ),
-            // Max label
-            SizedBox(
-              width: 50,
-              child: Text(
-                '${max.toStringAsFixed(2)}m',
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.right,
-              ),
-            ),
+            const SizedBox(height: 24),
           ],
         ),
-        if (median != null) ...[
-          const SizedBox(height: 4),
-          Center(
-            child: Text(
-              'Median: ${median.toStringAsFixed(2)}m',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.blue[700],
-                fontWeight: FontWeight.w500,
-              ),
+        Expanded(
+          flex: 1,
+          child: CustomPaint(
+            size: const Size(double.infinity, 60),
+            painter: _RangeBarPainter(
+              minValue: min,
+              maxValue: max,
+              medianValue: median,
             ),
           ),
-        ],
+        ),
+        //SizedBox(width: 2),
+        Text(
+          'Max: ${max.toStringAsFixed(2)}m',
+          style: const TextStyle(fontSize: 12),
+        ),
+        Spacer(),
       ],
     );
   }
@@ -1018,10 +1115,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
         children: [
           Icon(icon, size: 20, color: Colors.grey[600]),
           const SizedBox(width: 8),
-          Text(
-            '$label: ',
-            style: const TextStyle(fontWeight: FontWeight.w500),
-          ),
+          Text('$label: ', style: const TextStyle(fontWeight: FontWeight.w500)),
           Text(value),
         ],
       ),
@@ -1030,7 +1124,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
 
   Widget _buildImageSection(String? title, String? base64Image) {
     if (base64Image == null) return const SizedBox.shrink();
-    
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -1038,10 +1132,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (title != null) ...[
-              Text(
-                title,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
             ],
             ClipRRect(
@@ -1060,7 +1151,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
 
   Color? _getAccessibilityColor(String? rating) {
     if (rating == null) return null;
-    
+
     switch (rating.toUpperCase()) {
       case 'EXCELLENT':
         return Colors.green.shade50;
@@ -1117,7 +1208,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           'lat': double.parse(_latController.text),
           'lon': double.parse(_lonController.text),
         });
-        
+
         // Heading, pitch, and fov only for single view
         if (!_multiView) {
           body['heading'] = int.parse(_headingController.text);
@@ -1126,7 +1217,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
         }
       } else {
         body['address'] = _addressController.text;
-        
+
         // For single view with address, still send heading, pitch, and fov
         if (!_multiView) {
           body['heading'] = int.parse(_headingController.text);
@@ -1137,7 +1228,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
 
       // Determine endpoint
       final endpoint = _multiView ? '/analyse/multi' : '/analyse/single';
-      
+
       // Make API call
       final response = await http.post(
         Uri.parse('$baseUrl$endpoint'),
@@ -1216,21 +1307,12 @@ class _RangeBarPainter extends CustomPainter {
     // Draw the horizontal line (range)
     paint.color = Colors.grey[400]!;
     paint.strokeWidth = 3;
-    canvas.drawLine(
-      Offset(startX, lineY),
-      Offset(endX, lineY),
-      paint,
-    );
+    canvas.drawLine(Offset(startX, lineY), Offset(endX, lineY), paint);
 
     // Draw filled bar in the middle (represents the range more prominently)
     final barHeight = 12.0;
     final barRect = RRect.fromRectAndRadius(
-      Rect.fromLTWH(
-        startX,
-        lineY - barHeight / 2,
-        endX - startX,
-        barHeight,
-      ),
+      Rect.fromLTWH(startX, lineY - barHeight / 2, endX - startX, barHeight),
       const Radius.circular(6),
     );
     paint.color = Colors.teal.withOpacity(0.3);
@@ -1264,8 +1346,9 @@ class _RangeBarPainter extends CustomPainter {
     // Draw median marker if provided
     if (medianValue != null && maxValue > minValue) {
       final range = maxValue - minValue;
-      final medianPosition = startX + ((medianValue! - minValue) / range) * (endX - startX);
-      
+      final medianPosition =
+          startX + ((medianValue! - minValue) / range) * (endX - startX);
+
       // Draw median line
       paint.style = PaintingStyle.fill;
       paint.color = Colors.blue[700]!;
@@ -1275,7 +1358,7 @@ class _RangeBarPainter extends CustomPainter {
         Offset(medianPosition, lineY + barHeight / 2 + 2),
         paint,
       );
-      
+
       // Draw median circle
       canvas.drawCircle(Offset(medianPosition, lineY), 5, paint);
       paint.color = Colors.white;
